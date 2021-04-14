@@ -3,13 +3,10 @@ x=5
 y=9
 function maxOfTwoNumbers (x,y){
   if (x>y){
-    console.log(x+"is larger than" + y)
     return x
   }if (y>x){
-    console.log(y + " is larger than" + x)
     return y
   }else {
-    console.log(y + "equal to " + x)
   return x}
 
 }
@@ -38,8 +35,7 @@ const numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
 function sumNumbers(summing){
   let total = 0;
   for(var i=0;i<summing.length;i++){                                    
-        total += summing[i]
-    console.log(total)}
+        total += summing[i]}
               return total;
              }
 
@@ -48,7 +44,7 @@ sum = sumNumbers(numbers)
 
 const mixedArr = [6, 12, 'miami', 1, true, 'barca', '200', 'lisboa', 8, 10];
 
-            
+
 // Iteration #4: Calculate the average
 // Level 1: Array of numbers
 const numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
@@ -58,14 +54,12 @@ function averageNumbers(avging){
   if (avging.length===0) {return null}
   for(var i=0;i<avging.length;i++){                                    
         total += avging[i]
-        avg = total/avging.length
-        console.log(avg)
     }
-              return avg;
+              return total/avging.length;
              }
 
 avgnumbers = sumNumbers(numbersAvg)
-console.log(avgnumbers)
+
 
 // Level 2: Array of strings
 const wordsArr = ['seat', 'correspond', 'linen', 'motif', 'hole', 'smell', 'smart', 'chaos', 'fuel', 'palace'];
@@ -74,11 +68,11 @@ const wordsArr = ['seat', 'correspond', 'linen', 'motif', 'hole', 'smell', 'smar
 function averageWordLength (wordsavgarray){
   let total1=0
     if (wordsavgarray.length===0) {return null}
-    if (wordsavgarray.length===1) {return wordsavgarray[1]}
+    
     for (var i=0; i < wordsavgarray.length; i++){
-      total1 += wordsavgarray.length[i]
-      avg1= total/wordsavgarray.length}
-    return avg1;
+      total1 += wordsavgarray[i].length
+      }
+    return total1/wordsavgarray.length;
   }
 
 avgwl = averageWordLength(wordsArr) 
@@ -100,11 +94,9 @@ const wordsUnique = [
 ];
 
 function uniquifyArray(arr){
-    
-  let uniqueArr = [];
-  
-  // loop through array
-  for(let i of arr) {
+  if(arr.length===0){return null}
+  let uniqueArr = [];  
+    for(let i of arr) {
       if(uniqueArr.indexOf(i) === -1) {
           uniqueArr.push(i);
       }
@@ -112,10 +104,21 @@ function uniquifyArray(arr){
   }
   console.log(uniqueArr);
 }
+console.log(uniquifyArray(wordsUnique))
 
 // Iteration #6: Find elements
 const wordsFind = ['machine', 'subset', 'trouble', 'starting', 'matter', 'eating', 'truth', 'disobedience'];
 
+function doesWordExist(array,word) {
+  if (array.length===0) {return null}
+  for(const word of array) {
+     if(array === word) {
+        return true;
+     }
+  }
+  return false;
+}
+console.log(doesWordExist(wordsFind,"machine"));
 
 // Iteration #7: Count repetition
 const wordsCount = [
@@ -131,6 +134,17 @@ const wordsCount = [
   'disobedience',
   'matter'
 ];
+
+function howManyTimes(arr, str) {
+  if (arr.length === 0) return 0;
+  let result = 0;
+  for (let i = 0; i < arr.length; i++) {
+    result += str == arr[i];
+  }
+  return result;
+}
+let iteraction7test = howManyTimes(wordsCount, 'matter');
+console.log(`The howManyTimes response is: ${iteraction7test}`);
 
 // Iteration #8: Bonus
 
@@ -154,5 +168,21 @@ const matrix = [
   [4, 42, 16, 73, 38, 25, 39, 11, 24, 94, 72, 18, 8, 46, 29, 32, 40, 62, 76, 36],
   [20, 69, 36, 41, 72, 30, 23, 88, 34, 62, 99, 69, 82, 67, 59, 85, 74, 4, 36, 16],
   [20, 73, 35, 29, 78, 31, 90, 1, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 5, 54],
-  [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
-];
+  [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]]
+
+  function greatestProduct(matrix) {
+    let maxLoop = matrix.length - 3;
+    let testmax1 = 0;
+    let testmax2 = 0;
+    let result = 0;
+    for (let i = 0; i < maxLoop; i++) {
+      for (let j = 0; j < maxLoop; j++) {
+        testmax1 =
+          matrix[i][j] * matrix[i][j + 1] * matrix[i][j + 2] * matrix[i][j + 3];
+        testmax2 =
+          matrix[i][j] * matrix[i + 1][j] * matrix[i + 2][j] * matrix[i + 3][j];
+        result = Math.max(result, testmax1, testmax2);
+      }
+    }
+    return result;
+  }
